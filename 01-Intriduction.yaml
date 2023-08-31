@@ -1,10 +1,13 @@
 # This file will give overview of Ansible 
-- name: installing ngnix  ## name of Playbook
+- name: installing ngnix  ## name of Playbook and - indicate list of tasks
   hostname: all     ## host group where you defined in inventory file
-  become: yes  ##tell to ansible to execute commands with privileages 
-  become: root  ## tell to ansible to become as root user and execute commands 
+  become: yes  ##tell to ansible to execute commands with privileages  
   tasks:
-    - yum: 
-      name: ngnix
-      state: latest
-      
+    - name: install ngnix
+      yum:
+        name: ngnix
+        state: latest
+    - name: start ngnix
+      service:
+        name: ngnix
+        state: started
